@@ -2,9 +2,12 @@ import { subscribeToMediaQuery, convertBreakpointsToMediaQueries, transformValue
 import MqLayout from './component.js'
 
 const DEFAULT_BREAKPOINT = {
-  sm: 450,
-  md: 1250,
-  lg: Infinity,
+  // start: [1250,Infinity],
+  start: [320,1000],
+  start2: [1000,2000],
+  // sm: 450,
+  // md: 1250,
+  // lg: Infinity,
 }
 
 const install = function (Vue, { breakpoints = DEFAULT_BREAKPOINT, defaultBreakpoint = 'sm' } = {}) {  
@@ -33,8 +36,10 @@ const install = function (Vue, { breakpoints = DEFAULT_BREAKPOINT, defaultBreakp
         // setup listeners
         for (const key in mediaQueries) {
           const mediaQuery = mediaQueries[key]
+
           const enter = () => { reactorComponent.currentBreakpoint = key }
           subscribeToMediaQuery(mediaQuery, enter)
+          
         }
         hasSetupListeners = true
       }
